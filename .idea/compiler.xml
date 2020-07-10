@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="merchant_service80" />
+        <module name="merchant_activity9004" />
+        <module name="common_service" />
+        <module name="eureka_server7002" />
+        <module name="merchant_order9003" />
+        <module name="merchant_shopping9002" />
+        <module name="gateway_service9528" />
+        <module name="redis_service9999" />
+        <module name="eureka_server7003" />
+        <module name="merchant_user9001" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtummatrix.mapper.BmWarehouseDao">
+  <resultMap id="BaseResultMap" type="com.qtummatrix.entity.BmWarehouse">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warehouseCode" jdbcType="VARCHAR" property="warehousecode" />
+    <result column="mechanismid" jdbcType="INTEGER" property="mechanismid" />
+    <result column="warehouseType" jdbcType="INTEGER" property="warehousetype" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="deliveryFeeAveryKM" jdbcType="DECIMAL" property="deliveryfeeaverykm" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="endTime" jdbcType="VARCHAR" property="endtime" />
+    <result column="deliveryRadius" jdbcType="DECIMAL" property="deliveryradius" />
+    <result column="mapCode" jdbcType="VARCHAR" property="mapcode" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="startSendNum" jdbcType="INTEGER" property="startsendnum" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, warehouseCode, mechanismid, warehouseType, address, deliveryFeeAveryKM, startTime, 
+    endTime, deliveryRadius, mapCode, tel, startSendNum, isDeleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_warehouse
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bm_warehouse
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmWarehouse" useGeneratedKeys="true">
+    insert into bm_warehouse (warehouseCode, mechanismid, warehouseType, 
+      address, deliveryFeeAveryKM, startTime, 
+      endTime, deliveryRadius, mapCode, 
+      tel, startSendNum, isDeleted
+      )
+    values (#{warehousecode,jdbcType=VARCHAR}, #{mechanismid,jdbcType=INTEGER}, #{warehousetype,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{deliveryfeeaverykm,jdbcType=DECIMAL}, #{starttime,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{deliveryradius,jdbcType=DECIMAL}, #{mapcode,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{startsendnum,jdbcType=INTEGER}, #{isdeleted,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmWarehouse" useGeneratedKeys="true">
+    insert into bm_warehouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="warehousecode != null">
+        warehouseCode,
+      </if>
+      <if test="mechanismid != null">
+        mechanismid,
+      </if>
+      <if test="warehousetype != null">
+        warehouseType,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="deliveryfeeaverykm != null">
+        deliveryFeeAveryKM,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="deliveryradius != null">
+        deliveryRadius,
+      </if>
+      <if test="mapcode != null">
+        mapCode,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="startsendnum != null">
+        startSendNum,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="warehousecode != null">
+        #{warehousecode,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanismid != null">
+        #{mechanismid,jdbcType=INTEGER},
+      </if>
+      <if test="warehousetype != null">
+        #{warehousetype,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryfeeaverykm != null">
+        #{deliveryfeeaverykm,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryradius != null">
+        #{deliveryradius,jdbcType=DECIMAL},
+      </if>
+      <if test="mapcode != null">
+        #{mapcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="startsendnum != null">
+        #{startsendnum,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.BmWarehouse">
+    update bm_warehouse
+    <set>
+      <if test="warehousecode != null">
+        warehouseCode = #{warehousecode,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanismid != null">
+        mechanismid = #{mechanismid,jdbcType=INTEGER},
+      </if>
+      <if test="warehousetype != null">
+        warehouseType = #{warehousetype,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryfeeaverykm != null">
+        deliveryFeeAveryKM = #{deliveryfeeaverykm,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryradius != null">
+        deliveryRadius = #{deliveryradius,jdbcType=DECIMAL},
+      </if>
+      <if test="mapcode != null">
+        mapCode = #{mapcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="startsendnum != null">
+        startSendNum = #{startsendnum,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qtummatrix.entity.BmWarehouse">
+    update bm_warehouse
+    set warehouseCode = #{warehousecode,jdbcType=VARCHAR},
+      mechanismid = #{mechanismid,jdbcType=INTEGER},
+      warehouseType = #{warehousetype,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      deliveryFeeAveryKM = #{deliveryfeeaverykm,jdbcType=DECIMAL},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR},
+      deliveryRadius = #{deliveryradius,jdbcType=DECIMAL},
+      mapCode = #{mapcode,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      startSendNum = #{startsendnum,jdbcType=INTEGER},
+      isDeleted = #{isdeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
