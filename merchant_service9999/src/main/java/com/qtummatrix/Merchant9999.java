@@ -9,8 +9,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableHystrix
-public class Merchant80 {
+public class Merchant9999 {
     public static void main(String[] args) {
-        SpringApplication.run(Merchant80.class,args);
+        SpringApplication.run(Merchant9999.class,args);
     }
 }
