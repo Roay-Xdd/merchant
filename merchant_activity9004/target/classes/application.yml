@@ -8,9 +8,13 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver            # mysql驱动包
     url: jdbc:mysql://47.97.210.181:3306/supplier?characterEncoding=utf8&serverTimezone=UTC&useSSL=false
-    username: xiedong
-    password: root
-
+    username: root
+    password: 123456
+  rabbitmq:
+    addresses: localhoost:5672
+    username: guest
+    password: guest
+    port: 5672
 
 eureka:
   client:
@@ -20,7 +24,7 @@ eureka:
     fetchRegistry: true
     service-url:
       #单机版
-      defaultZone: http://localhost:7002/eureka/,http://localhost:7003/eureka/
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
       # 集群版
       #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
   instance:
