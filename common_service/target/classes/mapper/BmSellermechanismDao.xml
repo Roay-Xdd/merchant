@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtummatrix.mapper.BmSellermechanismDao">
+  <resultMap id="BaseResultMap" type="com.qtummatrix.entity.BmSellermechanism">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sellerId" jdbcType="INTEGER" property="sellerid" />
+    <result column="mechanismId" jdbcType="INTEGER" property="mechanismid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sellerId, mechanismId, createtime, isDeleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_sellermechanism
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bm_sellermechanism
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmSellermechanism" useGeneratedKeys="true">
+    insert into bm_sellermechanism (sellerId, mechanismId, createtime, 
+      isDeleted)
+    values (#{sellerid,jdbcType=INTEGER}, #{mechanismid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{isdeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmSellermechanism" useGeneratedKeys="true">
+    insert into bm_sellermechanism
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sellerid != null">
+        sellerId,
+      </if>
+      <if test="mechanismid != null">
+        mechanismId,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sellerid != null">
+        #{sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="mechanismid != null">
+        #{mechanismid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.BmSellermechanism">
+    update bm_sellermechanism
+    <set>
+      <if test="sellerid != null">
+        sellerId = #{sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="mechanismid != null">
+        mechanismId = #{mechanismid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qtummatrix.entity.BmSellermechanism">
+    update bm_sellermechanism
+    set sellerId = #{sellerid,jdbcType=INTEGER},
+      mechanismId = #{mechanismid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

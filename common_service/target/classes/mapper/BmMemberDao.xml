@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtummatrix.mapper.BmMemberDao">
+  <resultMap id="BaseResultMap" type="com.qtummatrix.entity.BmMember">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="BusinessName" jdbcType="VARCHAR" property="businessname" />
+    <result column="deliveryFee" jdbcType="DECIMAL" property="deliveryfee" />
+    <result column="deliveryRadius" jdbcType="DECIMAL" property="deliveryradius" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="backImg" jdbcType="VARCHAR" property="backimg" />
+    <result column="mapCode" jdbcType="VARCHAR" property="mapcode" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="workState" jdbcType="INTEGER" property="workstate" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="trueName" jdbcType="VARCHAR" property="truename" />
+    <result column="shopType" jdbcType="VARCHAR" property="shoptype" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="addTime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, BusinessName, deliveryFee, deliveryRadius, address, backImg, mapCode, `state`, 
+    workState, tel, `password`, trueName, shopType, token, amount, addTime, isDeleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bm_member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmMember" useGeneratedKeys="true">
+    insert into bm_member (BusinessName, deliveryFee, deliveryRadius, 
+      address, backImg, mapCode, 
+      `state`, workState, tel, 
+      `password`, trueName, shopType, 
+      token, amount, addTime, 
+      isDeleted)
+    values (#{businessname,jdbcType=VARCHAR}, #{deliveryfee,jdbcType=DECIMAL}, #{deliveryradius,jdbcType=DECIMAL}, 
+      #{address,jdbcType=VARCHAR}, #{backimg,jdbcType=VARCHAR}, #{mapcode,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{workstate,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, #{shoptype,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{isdeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmMember" useGeneratedKeys="true">
+    insert into bm_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="businessname != null">
+        BusinessName,
+      </if>
+      <if test="deliveryfee != null">
+        deliveryFee,
+      </if>
+      <if test="deliveryradius != null">
+        deliveryRadius,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="backimg != null">
+        backImg,
+      </if>
+      <if test="mapcode != null">
+        mapCode,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="workstate != null">
+        workState,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="truename != null">
+        trueName,
+      </if>
+      <if test="shoptype != null">
+        shopType,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="addtime != null">
+        addTime,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="businessname != null">
+        #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryfee != null">
+        #{deliveryfee,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryradius != null">
+        #{deliveryradius,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="backimg != null">
+        #{backimg,jdbcType=VARCHAR},
+      </if>
+      <if test="mapcode != null">
+        #{mapcode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="workstate != null">
+        #{workstate,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="shoptype != null">
+        #{shoptype,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.BmMember">
+    update bm_member
+    <set>
+      <if test="businessname != null">
+        BusinessName = #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryfee != null">
+        deliveryFee = #{deliveryfee,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryradius != null">
+        deliveryRadius = #{deliveryradius,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="backimg != null">
+        backImg = #{backimg,jdbcType=VARCHAR},
+      </if>
+      <if test="mapcode != null">
+        mapCode = #{mapcode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="workstate != null">
+        workState = #{workstate,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        trueName = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="shoptype != null">
+        shopType = #{shoptype,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null">
+        addTime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qtummatrix.entity.BmMember">
+    update bm_member
+    set BusinessName = #{businessname,jdbcType=VARCHAR},
+      deliveryFee = #{deliveryfee,jdbcType=DECIMAL},
+      deliveryRadius = #{deliveryradius,jdbcType=DECIMAL},
+      address = #{address,jdbcType=VARCHAR},
+      backImg = #{backimg,jdbcType=VARCHAR},
+      mapCode = #{mapcode,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=INTEGER},
+      workState = #{workstate,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      trueName = #{truename,jdbcType=VARCHAR},
+      shopType = #{shoptype,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      addTime = #{addtime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
