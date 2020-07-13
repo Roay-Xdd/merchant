@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qtummatrix.mapper.PWL_OfenSalesListMapper">
+<!--  查询常购清单  -->
+    <select id="getOfenSalesList" resultType="com.qtummatrix.bean.PWL_OfenSalesList">
+        SELECT SUM(buyNum) totalQuantity,goodsName,price,goodsImg FROM bm_inordergoodslist a,
+        bm_inorderlist b,bm_member c WHERE a.orderId = b.orderId AND sellerId = c.id AND
+        c.tel = #{tel} GROUP BY goodsName,goodsImg,price
+    </select>
+
+<!--  查看商品详情  -->
+    <select id="getGoodsDetails" resultType="com.qtummatrix.bean.PWL_GoodsDetails">
+        SELECT goodsImgUrl,goodsName,price,cname,bname,mechanismName,qualityPeriod from
+        bm_goods a,bm_specification b,sys_mechanism c,bm_warehouse d,bm_brand e,bm_category f
+        WHERE b.goodsId = a.id AND a.brandId = e.id AND a.warehouseCode = d.warehouseCode AND
+        c.id = d.mechanismid and a.categoryId = f.id AND a.id = #{id}
+    </select>
+</mapper>

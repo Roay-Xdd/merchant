@@ -6,14 +6,15 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+
 feign:
   hystrix:
     enabled: true
 spring:
-  main:
-    allow-bean-definition-overriding: true
   application:
     name: merchant-service
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver            # mysql驱动包
