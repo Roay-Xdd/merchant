@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qtummatrix.mapper.PWL_KeepAListMapper">
+    <resultMap id="orderDetailsMapper" type="com.qtummatrix.bean.PWL_OrderDetails">
+        <id column="orderId" property="orderId" />
+        <result column="totalQuantity" property="totalQuantity" />
+        <result column="aggregateAmount" property="aggregateAmount" />
+        <result column="payType" property="payType" />
+        <result column="createTime" property="createTime" />
+        <result column="orderStep" property="orderStep" />
+        <result column="contacter" property="contacter" />
+        <result column="tel" property="tel" />
+        <result column="address" property="address" />
+        <result column="mark" property="mark" />
+        <result column="deliveryFee" property="deliveryFee" />
+        <collection property="bmInordergoodslists" ofType="com.qtummatrix.entity.BmInordergoodslist">
+            <id column="id" property="id" />
+            <result column="orderid" property="orderid" />
+            <result column="goodsid" property="goodsid" />
+            <result column="spid" property="spid" />
+            <result column="sname" property="sname" />
+            <result column="goodsname" property="goodsname" />
+            <result column="goodsimg" property="goodsimg" />
+            <result column="buynum" property="buynum" />
+            <result column="price" property="price" />
+        </collection>
+    </resultMap>
+<!--  获取所有订单  -->
+    <select id="getOrderList" resultType="com.qtummatrix.bean.PWL_OrderList">
+        select a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
+        createTime,orderStep,orderState from bm_inorderlist a,bm_inordergoodslist b,bm_member c
+        where a.orderId = b.orderId AND c.id = a.sellerId AND c.tel = #{tel} group by a.orderid
+    </select>
+
+    <!--  获取所有待支付订单  -->
+    <select id="getNoPayList" resultType="com.qtummatrix.bean.PWL_OrderList">
+        select a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
+        createTime,orderStep,orderState from bm_inorderlist a,bm_inordergoodslist b,bm_member c
+        where a.orderId = b.orderId AND c.id = a.sellerId AND c.tel = #{tel}  and orderStep = 1
+         group by a.orderid
+    </select>
+
+    <!--  获取所有待发货订单  -->
+    <select id="getNoInspectionList" resultType="com.qtummatrix.bean.PWL_OrderList">
+        select a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
+        createTime,orderStep,orderState from bm_inorderlist a,bm_inordergoodslist b,bm_member c
+        where a.orderId = b.orderId AND c.id = a.sellerId and orderStep in(2,3,4) AND
+        c.tel = #{tel} group by a.orderid
+
+    </select>
+
+    <!--  获取所有待收货订单  -->
+    <select id="getNoSureList" resultType="com.qtummatrix.bean.PWL_OrderList">
+        select a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
+        createTime,orderStep,orderState from bm_inorderlist a,bm_inordergoodslist b,bm_member c
+        where a.orderId = b.orderId AND c.id = a.sellerId and orderStep = 6 AND
+        c.tel = #{tel} group by a.orderid
+    </select>
+
+    <!--  获取所有已完成订单  -->
+    <select id="getCompletedList" resultType="com.qtummatrix.bean.PWL_OrderList">
+        select a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
+        createTime,orderStep,orderState from bm_inorderlist a,bm_inordergoodslist b,bm_member c
+        where a.orderId = b.orderId AND c.id = a.sellerId and orderStep = 7 AND
+        c.tel = #{tel} group by a.orderid
+    </select>
+
+    <!--  获取订单详情  -->
+    <select id="getOrderDetail" resultMap="orderDetailsMapper">
+        SELECT a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
+        payType,createTime,orderStep,contacter,tel,address,mark,deliveryFee,goodsName,price,buyNum,
+        goodsImg FROM bm_inorderlist a,bm_inordergoodslist b,bm_address c WHERE a.orderState = 1 AND
+        a.orderId = b.orderId AND a.sellerId = c.sellerId AND a.orderId = #{orderId} group by
+        a.orderid,b.goodsName,b.price,b.buyNum,c.contacter,c.tel,c.address,b.goodsImg
+    </select>
+</mapper>

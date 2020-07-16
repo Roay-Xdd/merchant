@@ -6,17 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="merchant_service80" />
+        <module name="rabbitmq_service9082" />
         <module name="merchant_activity9004" />
-        <module name="common_service" />
+        <module name="eureka_server7003" />
         <module name="eureka_server7002" />
         <module name="merchant_order9003" />
-        <module name="merchant_shopping9002" />
         <module name="gateway_service9528" />
-        <module name="redis_service9999" />
-        <module name="eureka_server7003" />
+        <module name="merchant_service9999" />
+        <module name="common_service" />
+        <module name="merchant_shopping9002" />
         <module name="merchant_user9001" />
+        <module name="redis_service9009" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="merchant_service80" target="1.8" />
+      <module name="redis_service9999" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

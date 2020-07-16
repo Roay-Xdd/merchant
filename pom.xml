@@ -14,12 +14,13 @@
         <module>merchant_shopping9002</module>
         <module>merchant_order9003</module>
         <module>merchant_activity9004</module>
-        <module>redis_service9999</module>
+        <module>redis_service9009</module>
         <module>gateway_service9528</module>
         <module>eureka_server7002</module>
         <module>eureka_server7003</module>
-        <module>merchant_service80</module>
+        <module>merchant_service9999</module>
         <module>common_service</module>
+        <module>rabbitmq_service9082</module>
     </modules>
 
 

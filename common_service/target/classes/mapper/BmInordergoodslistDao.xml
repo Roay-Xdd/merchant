@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtummatrix.mapper.BmInordergoodslistDao">
+  <resultMap id="BaseResultMap" type="com.qtummatrix.entity.BmInordergoodslist">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderId" jdbcType="VARCHAR" property="orderid" />
+    <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="spId" jdbcType="INTEGER" property="spid" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="goodsImg" jdbcType="VARCHAR" property="goodsimg" />
+    <result column="buyNum" jdbcType="INTEGER" property="buynum" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, orderId, goodsId, spId, sname, goodsName, goodsImg, buyNum, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_inordergoodslist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bm_inordergoodslist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmInordergoodslist" useGeneratedKeys="true">
+    insert into bm_inordergoodslist (orderId, goodsId, spId, 
+      sname, goodsName, goodsImg, 
+      buyNum, price)
+    values (#{orderid,jdbcType=VARCHAR}, #{goodsid,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER}, 
+      #{sname,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, #{goodsimg,jdbcType=VARCHAR}, 
+      #{buynum,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmInordergoodslist" useGeneratedKeys="true">
+    insert into bm_inordergoodslist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="spid != null">
+        spId,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="goodsname != null">
+        goodsName,
+      </if>
+      <if test="goodsimg != null">
+        goodsImg,
+      </if>
+      <if test="buynum != null">
+        buyNum,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsimg != null">
+        #{goodsimg,jdbcType=VARCHAR},
+      </if>
+      <if test="buynum != null">
+        #{buynum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.BmInordergoodslist">
+    update bm_inordergoodslist
+    <set>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null">
+        goodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null">
+        spId = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsimg != null">
+        goodsImg = #{goodsimg,jdbcType=VARCHAR},
+      </if>
+      <if test="buynum != null">
+        buyNum = #{buynum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qtummatrix.entity.BmInordergoodslist">
+    update bm_inordergoodslist
+    set orderId = #{orderid,jdbcType=VARCHAR},
+      goodsId = #{goodsid,jdbcType=INTEGER},
+      spId = #{spid,jdbcType=INTEGER},
+      sname = #{sname,jdbcType=VARCHAR},
+      goodsName = #{goodsname,jdbcType=VARCHAR},
+      goodsImg = #{goodsimg,jdbcType=VARCHAR},
+      buyNum = #{buynum,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

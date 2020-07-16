@@ -13,13 +13,15 @@
     <file url="file://$PROJECT_DIR$/merchant_activity9004/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/merchant_order9003/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/merchant_order9003/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/merchant_service80/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/merchant_service80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/merchant_service9999/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/merchant_service9999/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/merchant_shopping9002/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/merchant_shopping9002/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/merchant_user9001/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/merchant_user9001/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/redis_service9999/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/redis_service9999/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq_service9082/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq_service9082/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/redis_service9009/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/redis_service9009/src/main/resources" charset="UTF-8" />
   </component>
 </project>

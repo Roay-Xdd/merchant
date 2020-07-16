@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: rabbitmq-service
+  main:
+    allow-bean-definition-overriding: true
+  artemis:
+    port: 9082
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
