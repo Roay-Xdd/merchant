@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtummatrix.mapper.BmSpecificationDao">
+  <resultMap id="BaseResultMap" type="com.qtummatrix.entity.BmSpecification">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="oldPrice" jdbcType="DECIMAL" property="oldprice" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="warnStock" jdbcType="INTEGER" property="warnstock" />
+    <result column="allSaled" jdbcType="INTEGER" property="allsaled" />
+    <result column="currentMonth" jdbcType="VARCHAR" property="currentmonth" />
+    <result column="isShelves" jdbcType="INTEGER" property="isshelves" />
+    <result column="isRecom" jdbcType="INTEGER" property="isrecom" />
+    <result column="goodsImgUrl" jdbcType="VARCHAR" property="goodsimgurl" />
+    <result column="qualityPeriod" jdbcType="VARCHAR" property="qualityperiod" />
+    <result column="productionDate" jdbcType="TIMESTAMP" property="productiondate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qtummatrix.entity.BmSpecification">
+    <result column="barCode" jdbcType="LONGVARBINARY" property="barcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goodsId, sname, oldPrice, price, stock, warnStock, allSaled, currentMonth, isShelves, 
+    isRecom, goodsImgUrl, qualityPeriod, productionDate
+  </sql>
+  <sql id="Blob_Column_List">
+    barCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bm_specification
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bm_specification
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmSpecification" useGeneratedKeys="true">
+    insert into bm_specification (goodsId, sname, oldPrice, 
+      price, stock, warnStock, 
+      allSaled, currentMonth, isShelves, 
+      isRecom, goodsImgUrl, qualityPeriod, 
+      productionDate, barCode)
+    values (#{goodsid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{oldprice,jdbcType=DECIMAL}, 
+      #{price,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER}, #{warnstock,jdbcType=INTEGER}, 
+      #{allsaled,jdbcType=INTEGER}, #{currentmonth,jdbcType=VARCHAR}, #{isshelves,jdbcType=INTEGER}, 
+      #{isrecom,jdbcType=INTEGER}, #{goodsimgurl,jdbcType=VARCHAR}, #{qualityperiod,jdbcType=VARCHAR}, 
+      #{productiondate,jdbcType=TIMESTAMP}, #{barcode,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.BmSpecification" useGeneratedKeys="true">
+    insert into bm_specification
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="oldprice != null">
+        oldPrice,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="warnstock != null">
+        warnStock,
+      </if>
+      <if test="allsaled != null">
+        allSaled,
+      </if>
+      <if test="currentmonth != null">
+        currentMonth,
+      </if>
+      <if test="isshelves != null">
+        isShelves,
+      </if>
+      <if test="isrecom != null">
+        isRecom,
+      </if>
+      <if test="goodsimgurl != null">
+        goodsImgUrl,
+      </if>
+      <if test="qualityperiod != null">
+        qualityPeriod,
+      </if>
+      <if test="productiondate != null">
+        productionDate,
+      </if>
+      <if test="barcode != null">
+        barCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="oldprice != null">
+        #{oldprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="warnstock != null">
+        #{warnstock,jdbcType=INTEGER},
+      </if>
+      <if test="allsaled != null">
+        #{allsaled,jdbcType=INTEGER},
+      </if>
+      <if test="currentmonth != null">
+        #{currentmonth,jdbcType=VARCHAR},
+      </if>
+      <if test="isshelves != null">
+        #{isshelves,jdbcType=INTEGER},
+      </if>
+      <if test="isrecom != null">
+        #{isrecom,jdbcType=INTEGER},
+      </if>
+      <if test="goodsimgurl != null">
+        #{goodsimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityperiod != null">
+        #{qualityperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="productiondate != null">
+        #{productiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.BmSpecification">
+    update bm_specification
+    <set>
+      <if test="goodsid != null">
+        goodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="oldprice != null">
+        oldPrice = #{oldprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="warnstock != null">
+        warnStock = #{warnstock,jdbcType=INTEGER},
+      </if>
+      <if test="allsaled != null">
+        allSaled = #{allsaled,jdbcType=INTEGER},
+      </if>
+      <if test="currentmonth != null">
+        currentMonth = #{currentmonth,jdbcType=VARCHAR},
+      </if>
+      <if test="isshelves != null">
+        isShelves = #{isshelves,jdbcType=INTEGER},
+      </if>
+      <if test="isrecom != null">
+        isRecom = #{isrecom,jdbcType=INTEGER},
+      </if>
+      <if test="goodsimgurl != null">
+        goodsImgUrl = #{goodsimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityperiod != null">
+        qualityPeriod = #{qualityperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="productiondate != null">
+        productionDate = #{productiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="barcode != null">
+        barCode = #{barcode,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qtummatrix.entity.BmSpecification">
+    update bm_specification
+    set goodsId = #{goodsid,jdbcType=INTEGER},
+      sname = #{sname,jdbcType=VARCHAR},
+      oldPrice = #{oldprice,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      warnStock = #{warnstock,jdbcType=INTEGER},
+      allSaled = #{allsaled,jdbcType=INTEGER},
+      currentMonth = #{currentmonth,jdbcType=VARCHAR},
+      isShelves = #{isshelves,jdbcType=INTEGER},
+      isRecom = #{isrecom,jdbcType=INTEGER},
+      goodsImgUrl = #{goodsimgurl,jdbcType=VARCHAR},
+      qualityPeriod = #{qualityperiod,jdbcType=VARCHAR},
+      productionDate = #{productiondate,jdbcType=TIMESTAMP},
+      barCode = #{barcode,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qtummatrix.entity.BmSpecification">
+    update bm_specification
+    set goodsId = #{goodsid,jdbcType=INTEGER},
+      sname = #{sname,jdbcType=VARCHAR},
+      oldPrice = #{oldprice,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      warnStock = #{warnstock,jdbcType=INTEGER},
+      allSaled = #{allsaled,jdbcType=INTEGER},
+      currentMonth = #{currentmonth,jdbcType=VARCHAR},
+      isShelves = #{isshelves,jdbcType=INTEGER},
+      isRecom = #{isrecom,jdbcType=INTEGER},
+      goodsImgUrl = #{goodsimgurl,jdbcType=VARCHAR},
+      qualityPeriod = #{qualityperiod,jdbcType=VARCHAR},
+      productionDate = #{productiondate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

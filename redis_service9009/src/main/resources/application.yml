@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: redis-service
+  main:
+    allow-bean-definition-overriding: true
   #redis配置
   redis:
     host: localhost  #redis配置ip

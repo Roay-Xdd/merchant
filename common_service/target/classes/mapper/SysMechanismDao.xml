@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtummatrix.mapper.SysMechanismDao">
+  <resultMap id="BaseResultMap" type="com.qtummatrix.entity.SysMechanism">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mechanismCode" jdbcType="VARCHAR" property="mechanismcode" />
+    <result column="mechanismName" jdbcType="VARCHAR" property="mechanismname" />
+    <result column="levelId" jdbcType="INTEGER" property="levelid" />
+    <result column="addvcd" jdbcType="VARCHAR" property="addvcd" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mechanismCode, mechanismName, levelId, addvcd, `password`, tel, parentId, createTime, 
+    isDeleted, city
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_mechanism
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_mechanism
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.SysMechanism" useGeneratedKeys="true">
+    insert into sys_mechanism (mechanismCode, mechanismName, levelId, 
+      addvcd, `password`, tel, 
+      parentId, createTime, isDeleted, 
+      city)
+    values (#{mechanismcode,jdbcType=VARCHAR}, #{mechanismname,jdbcType=VARCHAR}, #{levelid,jdbcType=INTEGER}, 
+      #{addvcd,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{isdeleted,jdbcType=INTEGER}, 
+      #{city,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qtummatrix.entity.SysMechanism" useGeneratedKeys="true">
+    insert into sys_mechanism
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mechanismcode != null">
+        mechanismCode,
+      </if>
+      <if test="mechanismname != null">
+        mechanismName,
+      </if>
+      <if test="levelid != null">
+        levelId,
+      </if>
+      <if test="addvcd != null">
+        addvcd,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="parentid != null">
+        parentId,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mechanismcode != null">
+        #{mechanismcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanismname != null">
+        #{mechanismname,jdbcType=VARCHAR},
+      </if>
+      <if test="levelid != null">
+        #{levelid,jdbcType=INTEGER},
+      </if>
+      <if test="addvcd != null">
+        #{addvcd,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.SysMechanism">
+    update sys_mechanism
+    <set>
+      <if test="mechanismcode != null">
+        mechanismCode = #{mechanismcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanismname != null">
+        mechanismName = #{mechanismname,jdbcType=VARCHAR},
+      </if>
+      <if test="levelid != null">
+        levelId = #{levelid,jdbcType=INTEGER},
+      </if>
+      <if test="addvcd != null">
+        addvcd = #{addvcd,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qtummatrix.entity.SysMechanism">
+    update sys_mechanism
+    set mechanismCode = #{mechanismcode,jdbcType=VARCHAR},
+      mechanismName = #{mechanismname,jdbcType=VARCHAR},
+      levelId = #{levelid,jdbcType=INTEGER},
+      addvcd = #{addvcd,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

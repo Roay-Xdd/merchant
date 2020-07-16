@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: merchant-shopping
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver            # mysql驱动包

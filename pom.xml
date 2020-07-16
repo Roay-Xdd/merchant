@@ -20,6 +20,7 @@
         <module>eureka_server7003</module>
         <module>merchant_service9999</module>
         <module>common_service</module>
+        <module>rabbitmq_service9082</module>
     </modules>
 
 
