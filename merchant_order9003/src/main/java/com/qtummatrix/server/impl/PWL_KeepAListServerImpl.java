@@ -118,5 +118,16 @@ public class PWL_KeepAListServerImpl implements PWL_KeepAListServer {
         return orderDetails;
     }
 
+    /**
+     * @方法描述: 取消订单
+     * @Author panwenlong
+     * @Date 19:16 2020/7/14
+    **/
+    @Override
+    public Integer cancelMyInOrder(String orderId) {
+        Integer number = pwl_keepAListMapper.cancelMyInOrder(orderId);
+        return number;
+    }
+
 
 }

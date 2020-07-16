@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>merchant_service80</artifactId>
+    <artifactId>merchant_service9999</artifactId>
     <dependencies>
         <!--openfeign-->
         <dependency>

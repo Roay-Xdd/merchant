@@ -19,5 +19,7 @@ public interface PWL_KeepAListServer {
     public List<PWL_OrderList> getCompletedList(String tel);
     //  获取订单详情
     public List<PWL_OrderDetails> getOrderDetail(String orderId);
+    //  取消订单
+    public Integer cancelMyInOrder(String orderId);
 
 }
