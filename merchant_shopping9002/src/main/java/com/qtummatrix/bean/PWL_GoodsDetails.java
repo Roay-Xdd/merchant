@@ -8,6 +8,8 @@ package com.qtummatrix.bean;
  * @Version 1.0
  */
 public class PWL_GoodsDetails {
+//  商品id
+    private Integer id;
 //  商品图片
     private String goodsImgUrl;
 //  商品名称
@@ -22,6 +24,28 @@ public class PWL_GoodsDetails {
     private String mechanismName;
 //  保质期
     private String qualityPeriod;
+
+    @Override
+    public String toString() {
+        return "PWL_GoodsDetails{" +
+                "id=" + id +
+                ", goodsImgUrl='" + goodsImgUrl + '\'' +
+                ", goodsName='" + goodsName + '\'' +
+                ", price='" + price + '\'' +
+                ", cname='" + cname + '\'' +
+                ", bname='" + bname + '\'' +
+                ", mechanismName='" + mechanismName + '\'' +
+                ", qualityPeriod='" + qualityPeriod + '\'' +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getGoodsImgUrl() {
         return goodsImgUrl;
@@ -79,16 +103,4 @@ public class PWL_GoodsDetails {
         this.qualityPeriod = qualityPeriod;
     }
 
-    @Override
-    public String toString() {
-        return "PWL_GoodsDetails{" +
-                "goodsImgUrl='" + goodsImgUrl + '\'' +
-                ", goodsName='" + goodsName + '\'' +
-                ", price='" + price + '\'' +
-                ", cname='" + cname + '\'' +
-                ", bname='" + bname + '\'' +
-                ", mechanismName='" + mechanismName + '\'' +
-                ", qualityPeriod='" + qualityPeriod + '\'' +
-                '}';
-    }
 }

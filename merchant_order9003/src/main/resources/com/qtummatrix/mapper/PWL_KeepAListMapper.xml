@@ -9,6 +9,7 @@
         <result column="payType" property="payType" />
         <result column="createTime" property="createTime" />
         <result column="orderStep" property="orderStep" />
+        <result column="orderState" property="orderState" />
         <result column="contacter" property="contacter" />
         <result column="tel" property="tel" />
         <result column="address" property="address" />
@@ -69,9 +70,14 @@
     <!--  获取订单详情  -->
     <select id="getOrderDetail" resultMap="orderDetailsMapper">
         SELECT a.orderId orderId,sum(b.buyNum) totalQuantity,sum(b.buyNum*b.price) aggregateAmount,
-        payType,createTime,orderStep,contacter,tel,address,mark,deliveryFee,goodsName,price,buyNum,
+        payType,createTime,orderStep,orderState,contacter,tel,address,mark,deliveryFee,goodsName,price,buyNum,
         goodsImg FROM bm_inorderlist a,bm_inordergoodslist b,bm_address c WHERE a.orderState = 1 AND
         a.orderId = b.orderId AND a.sellerId = c.sellerId AND a.orderId = #{orderId} group by
         a.orderid,b.goodsName,b.price,b.buyNum,c.contacter,c.tel,c.address,b.goodsImg
     </select>
+
+<!--  取消订单  -->
+    <update id="cancelMyInOrder">
+        UPDATE bm_inorderlist set orderState = 3 WHERE orderId = #{orderId}
+    </update>
 </mapper>

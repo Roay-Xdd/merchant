@@ -42,4 +42,9 @@ public class PWL_UserKeepAListServerApplication implements PWL_UserKeepAListServ
     public Map getOrderDetail(String orderId) {
         return null;
     }
+
+    @Override
+    public Map cancelMyInOrder(String orderId) {
+        return null;
+    }
 }
