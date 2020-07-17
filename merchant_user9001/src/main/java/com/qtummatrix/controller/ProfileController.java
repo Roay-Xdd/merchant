@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+//    解决跨域请求
+@CrossOrigin(allowCredentials = "true",allowedHeaders = "*",
+        methods = {RequestMethod.DELETE,RequestMethod.GET,
+                RequestMethod.POST,RequestMethod.PUT,RequestMethod.HEAD},origins="*")
 @RestController
 @RequestMapping("pro")
 public class ProfileController {
@@ -21,8 +25,9 @@ public class ProfileController {
      * @param token 手机号码
      * @return 已测
      */
+
     @GetMapping("getBmMember")
-    public Object getBmMember(String token){
+    public Object getBmMember(@RequestParam("token") String token){
         System.out.println(token);
         return  profileService.selectByPrimaryTel(token);
 
@@ -35,7 +40,7 @@ public class ProfileController {
      * @param token
      * @return 已测
      */
-    @PostMapping("/updatePwd")
+    @PostMapping("updatePwd")
     public MyResult updatePwd(String oldPassword, String newPassword, String token){
 
         return profileService.updatePwd(oldPassword,newPassword,token);
@@ -51,7 +56,7 @@ public class ProfileController {
      * @param token
      * @return 已测
      */
-    @GetMapping("/getAddress")
+    @GetMapping("getAddress")
     public List<F_Address> getAddress(String token){
 
         return profileService.getAddress(token);
@@ -65,7 +70,8 @@ public class ProfileController {
     @PostMapping("insertAddress")
     public MyResult insertAddress(F_Address address){
         address.setIsDeleted(0);
-        address.setIsDefault(0);
+        System.out.println(address.getSellerId());
+//        address.setIsDefault(0);
         Integer result = profileService.insertAddress(address);
         if(result > 0){
             return new MyResult(200,"添加成功",result);
@@ -82,16 +88,16 @@ public class ProfileController {
 
     /**
      * 删除收货地址
-     * @param addid 收货地址id
+     * @param addId 收货地址id
      * @return 已测
      */
-    @PostMapping("deleteAddress")
-    public MyResult deleteAddress(Integer addid){
-        Integer result = profileService.deleteAddress(addid);
+    @PostMapping("delAddress")
+    public MyResult deleteAddress(Integer addId){
+        Integer result = profileService.deleteAddress(addId);
         if(result > 0){
             return new MyResult(200,"删除成功",result);
         }else {
-            return new MyResult(666,"删除失败,参数为：addid"+addid,null);
+            return new MyResult(666,"删除失败,参数为：addId"+addId,null);
         }
     }
 
@@ -116,7 +122,7 @@ public class ProfileController {
      * @param token
      * @return 已测
      */
-    @GetMapping("findDefault")
+    @GetMapping("getDefaultAddress")
     public MyResult findDefaultAddress(String token){
         List<F_Address> list = profileService.findDefaultAddress(token);
         if(list != null){
@@ -125,13 +131,13 @@ public class ProfileController {
             return new MyResult(666,"查询失败,参数为"+token,null);
         }
     }
-
     /**
      * 修改默认收货地址
      * @param token
      * @param addId
-     * @return
+     * @return  已测
      */
+
     @PostMapping("updateDefault")
     public MyResult updateDefault(String token,Integer addId){
         Integer result = profileService.updateDefault(token,addId);
