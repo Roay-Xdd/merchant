@@ -352,7 +352,7 @@ public class WSY_CartServiceImpl implements WSY_CartService {
     @Override
     public Map<String, String> toPay(String token, String orderId, Integer payType, Integer money){
         BmMember member = (BmMember)CacheResult.
-                linkedHashMapToObject(redisFeignService.getFromRedis(token), BmMember.class);
+                linkedHashMapToObject(redisFeignService.getFromRedis(token).getData(), BmMember.class);
 
         if (member==null){
             member = new BmMember();
