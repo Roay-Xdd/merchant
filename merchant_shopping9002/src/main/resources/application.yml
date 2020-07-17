@@ -12,7 +12,17 @@ spring:
     url: jdbc:mysql://47.97.210.181:3306/supplier?characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: 123456
-
+    #redis配置
+  redis:
+    host: localhost  #redis配置ip
+    port: 6379
+    password:
+  rabbitmq:
+    host: 47.97.210.181
+    port: 5672
+    username: root
+    password: root
+    publisher-confirm-type: correlated
 
 eureka:
   client:

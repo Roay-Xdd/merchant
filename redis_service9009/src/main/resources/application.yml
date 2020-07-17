@@ -10,7 +10,12 @@ spring:
   redis:
     host: localhost  #redis配置ip
     port: 6379
-    password: 123456
+    password:
+  rabbitmq:
+    host: 47.97.210.181
+    port: 5672
+    username: root
+    password: root
 
 
     #采用lettuce方式连接

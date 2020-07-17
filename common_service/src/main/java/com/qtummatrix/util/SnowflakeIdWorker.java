@@ -1,4 +1,7 @@
 package com.qtummatrix.util;
+
+import org.springframework.stereotype.Component;
+
 /**
  * SnowFlake的结构如下(每部分用-分开):<br>
  * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000 <br>
@@ -12,6 +15,8 @@ package com.qtummatrix.util;
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，
  * 经测试，SnowFlake每秒能够产生26万ID左右。
  */
+
+
 public class SnowflakeIdWorker {
 
     /** 开始时间截 */

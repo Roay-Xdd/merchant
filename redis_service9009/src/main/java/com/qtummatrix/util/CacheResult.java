@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qtummatrix.entity.BmMember;
 import lombok.Data;
 
 import java.util.LinkedHashMap;
@@ -65,13 +66,23 @@ public class CacheResult<T> {
     //linkedhashMap转对象
     public static <T> Object linkedHashMapToObject(Object map, Class<T> beanType) {
         try {
-            String json = MAPPER.writeValueAsString(map);
-            T t = MAPPER.readValue(json, beanType);
-            return t;
+            System.out.println("CacheResult:map:"+map);
+            if (map != null){
+                String json = MAPPER.writeValueAsString(map);
+                T t = MAPPER.readValue(json, beanType);
+                return t;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }

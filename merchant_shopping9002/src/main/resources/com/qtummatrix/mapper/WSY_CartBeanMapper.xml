@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qtummatrix.mapper.WSY_CartBeanMapper">
+    <select id="selectCartItemBySpecificationId" resultType="com.qtummatrix.bean.WSY_CartItemBean">
+    SELECT bs.id, bs.sname, bg.goodsName, bg.warehouseCode, bs.price, bs.goodsImgUrl, sm.mechanismName, sm.mechanismCode,bs.goodsId, bs.stock
+    FROM bm_goods bg
+    LEFT JOIN bm_specification bs ON bg.id = bs.goodsId
+    LEFT JOIN bm_warehouse bw ON bw.warehouseCode = bg.warehouseCode
+    LEFT JOIN sys_mechanism sm ON sm.id = bw.mechanismid
+    WHERE bs.id = #{id}
+
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qtummatrix.entity.BmSpecification">
+        update bm_specification
+        <set >
+            <if test="goodsId != null" >
+                goodsId = #{goodsId,jdbcType=INTEGER},
+            </if>
+            <if test="sname != null" >
+                sname = #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="oldPrice != null" >
+                oldPrice = #{oldPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null" >
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null" >
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="warnStock != null" >
+                warnStock = #{warnStock,jdbcType=INTEGER},
+            </if>
+            <if test="allSaled != null" >
+                allSaled = #{allSaled,jdbcType=INTEGER},
+            </if>
+            <if test="currentMonth != null" >
+                currentMonth = #{currentMonth,jdbcType=VARCHAR},
+            </if>
+            <if test="isShelves != null" >
+                isShelves = #{isShelves,jdbcType=INTEGER},
+            </if>
+            <if test="isRecom != null" >
+                isRecom = #{isRecom,jdbcType=INTEGER},
+            </if>
+            <if test="goodsImgUrl != null" >
+                goodsImgUrl = #{goodsImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="qualityPeriod != null" >
+                qualityPeriod = #{qualityPeriod,jdbcType=VARCHAR},
+            </if>
+            <if test="productionDate != null" >
+                productionDate = #{productionDate},
+            </if>
+            <if test="barCode != null" >
+                barCode = #{barCode,jdbcType=LONGVARBINARY},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insertOrder" parameterType="com.qtummatrix.entity.BmInorderlist">
+        insert into bm_inorderlist (orderid,sellerid, deliveryfee, amount,
+      paytype, orderstep, deliveryaddid,
+      createtime, paytime, orderstate,
+      warehouserid, logisticsid, mark,
+      ordersteprecord)
+    values (#{orderid,jdbcType=VARCHAR}, #{sellerid,jdbcType=INTEGER}, #{deliveryfee,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL},
+      #{paytype,jdbcType=INTEGER}, #{orderstep,jdbcType=INTEGER}, #{deliveryaddid,jdbcType=VARCHAR},
+      #{createtime,jdbcType=TIMESTAMP}, #{paytime,jdbcType=TIMESTAMP}, #{orderstate,jdbcType=INTEGER},
+      #{warehouserid,jdbcType=INTEGER}, #{logisticsid,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR},
+      #{ordersteprecord,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <insert id="insertOrderGoods" parameterType="com.qtummatrix.entity.BmInordergoodslist">
+        insert into bm_inordergoodslist (orderid, goodsid, spid,
+      sname, goodsname, goodsimg,
+      buynum, price)
+    values (#{orderid,jdbcType=VARCHAR}, #{goodsid,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER},
+      #{sname,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, #{goodsimg,jdbcType=VARCHAR},
+      #{buynum,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL})
+    </insert>
+
+    <select id="selectMemberById" parameterType="java.lang.Integer" resultType="com.qtummatrix.entity.BmMember">
+    select id, businessname, deliveryfee, deliveryradius, address, backimg, mapcode, `state`,
+    workstate, tel, `password`, truename, shoptype, token, amount, addtime, isdeleted from bm_member
+    where id = = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateMember" parameterType="com.qtummatrix.entity.BmMember">
+    update bm_member
+    set businessname = #{businessname,jdbcType=VARCHAR},
+      deliveryfee = #{deliveryfee,jdbcType=DECIMAL},
+      deliveryradius = #{deliveryradius,jdbcType=DECIMAL},
+      address = #{address,jdbcType=VARCHAR},
+      backImg = #{backimg,jdbcType=VARCHAR},
+      mapcode = #{mapcode,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=INTEGER},
+      workstate = #{workstate,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      shoptype = #{shoptype,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      isdeleted = #{isdeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
