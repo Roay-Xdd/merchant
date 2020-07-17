@@ -8,6 +8,8 @@ package com.qtummatrix.bean;
  * @Version 1.0
  */
 public class PWL_OfenSalesList {
+//  商品id
+    private Integer id;
 //  已买总数
     private String totalQuantity;
 //  商品名字
@@ -16,6 +18,14 @@ public class PWL_OfenSalesList {
     private  String price;
 //  商品图片
     private String goodsImg;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTotalQuantity() {
         return totalQuantity;
@@ -52,7 +62,8 @@ public class PWL_OfenSalesList {
     @Override
     public String toString() {
         return "PWL_OfenSalesList{" +
-                "totalQuantity='" + totalQuantity + '\'' +
+                "id=" + id +
+                ", totalQuantity='" + totalQuantity + '\'' +
                 ", goodsName='" + goodsName + '\'' +
                 ", price='" + price + '\'' +
                 ", goodsImg='" + goodsImg + '\'' +

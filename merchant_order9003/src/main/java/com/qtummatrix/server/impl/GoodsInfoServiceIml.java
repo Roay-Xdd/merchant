@@ -12,6 +12,7 @@ import com.qtummatrix.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.misc.Cache;
 
 
 import java.util.List;
@@ -60,13 +61,16 @@ public class GoodsInfoServiceIml implements GoodsInfoService {
         System.out.println(b);
 
         //当缓存不存在时，
-        if(b!=true){
+        if(b==false){
             List<BmCategory> bmCategoryList = goodsInfoMapper.selectAllPCategory();
             //将内容存到redis中
             redisUtil.set("GOODS_PARENT_CATEGORY",bmCategoryList,60 * 60L);
             return bmCategoryList;
         }else {
-            CacheResult cacheResult = (CacheResult) redisUtil.get("GOODS_PARENT_CATEGORY");
+            CacheResult cacheResult = new CacheResult();
+            Object object = redisUtil.get("GOODS_PARENT_CATEGORY");
+            cacheResult.setData(object);
+//            CacheResult cacheResult = (CacheResult) redisUtil.get("GOODS_PARENT_CATEGORY");
             List<BmCategory> bmCategoryList = (List<BmCategory>) cacheResult.getData();
             return bmCategoryList;
         }
@@ -88,7 +92,10 @@ public class GoodsInfoServiceIml implements GoodsInfoService {
             return categoryList;
         }
         else{
-            CacheResult cacheResult = (CacheResult) redisUtil.get("GOODS_CHILD_CATEGORY"+categoryId);
+            CacheResult cacheResult = new CacheResult();
+            Object object = redisUtil.get("GOODS_CHILD_CATEGORY"+categoryId);
+            cacheResult.setData(object);
+//            CacheResult cacheResult = (CacheResult) redisUtil.get("GOODS_CHILD_CATEGORY"+categoryId);
                 List<BmCategory>list  = (List<BmCategory>) cacheResult.getData();
                 return list;
         }
@@ -130,7 +137,10 @@ public class GoodsInfoServiceIml implements GoodsInfoService {
 
             return goodsInfoBean;
         }else {
-            CacheResult cacheResult = (CacheResult) redisUtil.get("GOODS_DETAILS" + sid);
+            CacheResult cacheResult = new CacheResult();
+            Object object = redisUtil.get("GOODS_DETAILS"+sid);
+            cacheResult.setData(object);
+//            CacheResult cacheResult = (CacheResult) redisUtil.get("GOODS_DETAILS" + sid);
             GoodsInfoBean goodsInfoBean = (GoodsInfoBean) cacheResult.getData();
             return goodsInfoBean;
         }

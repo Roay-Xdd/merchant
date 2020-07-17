@@ -111,4 +111,22 @@ public class PWL_KeepAListController {
         return  map;
     }
 
+    /**
+     * @方法描述: 取消订单
+     * @Author panwenlong
+     * @Date 19:25 2020/7/14
+    **/
+    @ResponseBody
+    @RequestMapping("cancelMyInOrder")
+    public Map cancelMyInOrder(@RequestParam("orderId") String orderId){
+        Map map = new HashMap();
+        Integer number = pwl_keepAListServer.cancelMyInOrder(orderId);
+        if (number == 1) {
+            map.put("message","操作已提交，请等待商家确认");
+        }else {
+            map.put("message","操作失败");
+        }
+        return map;
+    }
+
 }

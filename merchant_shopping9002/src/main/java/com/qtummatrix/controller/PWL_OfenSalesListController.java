@@ -5,6 +5,7 @@ import com.qtummatrix.bean.PWL_OfenSalesList;
 import com.qtummatrix.server.PWL_OfenSalesListServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -33,7 +34,7 @@ public class PWL_OfenSalesListController {
     **/
     @ResponseBody
     @RequestMapping("getOfenSalesList")
-    public List<PWL_OfenSalesList> getOfenSalesList(String tel){
+    public List<PWL_OfenSalesList> getOfenSalesList(@RequestParam("tel") String tel){
         Map map = new HashMap();
         List<PWL_OfenSalesList> ofenSalesLists = pwl_ofenSalesListServer.getOfenSalesList(tel);
         map.put("ofenSalesLists",ofenSalesLists);
@@ -48,7 +49,7 @@ public class PWL_OfenSalesListController {
     **/
     @ResponseBody
     @RequestMapping("getGoodsDetails")
-    public List<PWL_GoodsDetails> getGoodsDetails(Integer id){
+    public List<PWL_GoodsDetails> getGoodsDetails(@RequestParam("id")Integer id){
         List<PWL_GoodsDetails> goodsDetails = pwl_ofenSalesListServer.getGoodsDetails(id);
         return goodsDetails;
     }
