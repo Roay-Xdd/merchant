@@ -79,13 +79,6 @@ public class ProfileController {
             return new MyResult(666,"添加失败,参数为"+address,null);
         }
     }
-  /*  @PostMapping("addAddress")
-    public Integer addAddress(F_Address bmAddress){
-        Integer addr = profileService.addAddress(bmAddress);
-        System.err.println(addr);
-        return addr;
-    }*/
-
     /**
      * 删除收货地址
      * @param addId 收货地址id
