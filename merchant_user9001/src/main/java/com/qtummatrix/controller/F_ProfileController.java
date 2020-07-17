@@ -1,9 +1,8 @@
 package com.qtummatrix.controller;
 
 import com.qtummatrix.bean.F_Address;
-import com.qtummatrix.bean.F_Member;
 import com.qtummatrix.bean.MyResult;
-import com.qtummatrix.service.ProfileService;
+import com.qtummatrix.service.F_ProfileService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,10 +14,10 @@ import java.util.List;
                 RequestMethod.POST,RequestMethod.PUT,RequestMethod.HEAD},origins="*")
 @RestController
 @RequestMapping("pro")
-public class ProfileController {
+public class F_ProfileController {
 
     @Resource
-    private ProfileService profileService;
+    private F_ProfileService profileService;
 
     /**
      * 通过手机号码查询个人信息
@@ -27,7 +26,7 @@ public class ProfileController {
      */
 
     @GetMapping("getBmMember")
-    public Object getBmMember(@RequestParam("token") String token){
+    public Object getBmMember(String token){
         System.out.println(token);
         return  profileService.selectByPrimaryTel(token);
 
@@ -57,7 +56,7 @@ public class ProfileController {
      * @return 已测
      */
     @GetMapping("getAddress")
-    public List<F_Address> getAddress(String token){
+    public List getAddress(String token){
 
         return profileService.getAddress(token);
     }

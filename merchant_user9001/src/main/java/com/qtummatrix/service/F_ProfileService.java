@@ -6,7 +6,7 @@ import com.qtummatrix.bean.MyResult;
 
 import java.util.List;
 
-public interface ProfileService {
+public interface F_ProfileService {
     /**
      * 通过手机号码查询个人信息
      * @param token 手机号码

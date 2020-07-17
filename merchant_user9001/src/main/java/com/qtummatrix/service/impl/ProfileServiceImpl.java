@@ -4,7 +4,7 @@ import com.qtummatrix.bean.F_Address;
 import com.qtummatrix.bean.F_Member;
 import com.qtummatrix.bean.MyResult;
 import com.qtummatrix.mapper.F_MemberMapper;
-import com.qtummatrix.service.ProfileService;
+import com.qtummatrix.service.F_ProfileService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ProfileServiceImpl implements ProfileService {
+public class ProfileServiceImpl implements F_ProfileService {
 
     @Resource
     private F_MemberMapper f_memberMapper;
