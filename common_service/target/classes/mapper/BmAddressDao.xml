@@ -6,10 +6,10 @@
     <result column="sellerId" jdbcType="INTEGER" property="sellerid" />
     <result column="contacter" jdbcType="VARCHAR" property="contacter" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="mainAddress" jdbcType="VARCHAR" property="mainaddress" />
+    <result column="mainAddress" jdbcType="VARCHAR" property="mainAddress" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="isDefault" jdbcType="INTEGER" property="isdefault" />
-    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="isDefault" jdbcType="INTEGER" property="isDefault" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="lng" jdbcType="VARCHAR" property="lng" />
     <result column="lat" jdbcType="VARCHAR" property="lat" />
   </resultMap>

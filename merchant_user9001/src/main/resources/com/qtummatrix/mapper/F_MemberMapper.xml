@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qtummatrix.mapper.F_MemberMapper">
+    <resultMap id="BaseResultMap" type="com.qtummatrix.bean.F_Member">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="BusinessName" property="businessName" jdbcType="VARCHAR"/>
+        <result column="deliveryFee" property="deliveryFee" jdbcType="DECIMAL"/>
+        <result column="deliveryRadius" property="deliveryRadius" jdbcType="DECIMAL"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="backImg" property="backImg" jdbcType="VARCHAR"/>
+        <result column="mapCode" property="mapCode" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="payPassword" property="payPassword" jdbcType="VARCHAR"/>
+        <result column="trueName" property="trueName" jdbcType="VARCHAR"/>
+        <result column="shopType" property="shopType" jdbcType="VARCHAR"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="amount" property="amount" jdbcType="DECIMAL"/>
+        <result column="addTime" property="addTime" jdbcType="TIMESTAMP"/>
+        <result column="isDeleted" property="isDeleted" jdbcType="INTEGER"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+      id, BusinessName, deliveryFee, deliveryRadius, address, backImg, mapCode, state,
+      tel, password, payPassword, trueName, shopType, token, amount, addTime, isDeleted
+    </sql>
+    <!--通过手机号码查询个人信息-->
+    <select id="selectByPrimaryTel" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from bm_member
+        where tel = #{token}
+    </select>
+
+    <!-- 得到店铺地址-->
+    <select id="getAddress" parameterType="java.lang.String" resultType="com.qtummatrix.bean.F_Address">
+      SELECT s2.* FROM bm_member s1
+      LEFT JOIN bm_address s2 ON s2.sellerId = s1.id
+      WHERE s1.tel = #{token}
+    </select>
+
+    <!-- 添加店铺地址-->
+    <insert id="insertAddress" parameterType="com.qtummatrix.bean.F_Address" >
+    /*insert into bm_address (addId, sellerId, contacter, tel, mainAddress, address,
+      isDefault, isDeleted, lng, lat)
+    values (#{addId}, #{sellerId}, #{contacter},#{tel}, #{mainAddress}, #{address},
+      #{isDefault}, #{isDeleted}, #{lng}, #{lat})*/
+        insert into bm_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sellerId != null">
+                sellerId,
+            </if>
+            <if test="contacter != null">
+                contacter,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="mainAddress != null">
+                mainAddress,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="isDefault != null">
+                isDefault,
+            </if>
+            <if test="isDeleted != null">
+                isDeleted,
+            </if>
+            <if test="lng != null">
+                lng,
+            </if>
+            <if test="lat != null">
+                lat,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sellerId != null">
+                #{sellerId,jdbcType=INTEGER},
+            </if>
+            <if test="contacter != null">
+                #{contacter,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="mainAddress != null">
+                #{mainAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="lng != null">
+                #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null">
+                #{lat,jdbcType=VARCHAR},
+            </if>
+        </trim>
+  </insert>
+
+<!--    更改登录密码-->
+    <update id="updatePwd" >
+        update bm_member
+        set password = #{newPassword}
+        where tel = #{token}
+    </update>
+    <!-- 更改支付密码 -->
+    <update id="updatePayPassword" >
+        update bm_member
+        set payPassword = #{newPayPassword}
+        where tel = #{token}
+    </update>
+<!--    删除地址-->
+    <delete id="deleteAddress" parameterType="java.lang.Integer" >
+    delete from bm_address
+    where addId = #{addId}
+    </delete>
+
+    <!--查询商家默认收货地址-->
+    <select id="findDefaultAddress" resultType="com.qtummatrix.bean.F_Address" >
+    select s1.* from bm_address s1
+    left join bm_member s2 on s2.id = s1.sellerId
+    where s2.token = #{token}
+    and s1.isDefault = 1
+  </select>
+
+    <!--查询商家所有收货地址-->
+    <select id="listBySellerId" resultType="com.qtummatrix.bean.F_Address" >
+        select * from bm_address
+        where sellerId = #{SellerId}
+    </select>
+
+    <!--修改收获地址-->
+    <update id="updateAddress" parameterType="com.qtummatrix.bean.F_Address">
+        update bm_address
+        <set >
+            <if test="sellerid != null" >
+                sellerId = #{sellerId,jdbcType=INTEGER},
+            </if>
+            <if test="contacter != null" >
+                contacter = #{contacter,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="mainAddress != null" >
+                mainAddress = #{mainAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefault != null" >
+                isDefault = #{isDefault,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null" >
+                isDeleted = #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="lng != null" >
+                lng = #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                lat = #{lat,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where addId = #{addId,jdbcType=INTEGER}
+    </update>
+
+
+</mapper>

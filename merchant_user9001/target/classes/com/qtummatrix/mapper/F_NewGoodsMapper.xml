@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qtummatrix.mapper.F_NewGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.qtummatrix.bean.F_NewGoods">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="goodsName" jdbcType="VARCHAR" property="goodsName" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="goodsId" jdbcType="INTEGER" property="goodsId" />
+
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="goodsImgUrl" jdbcType="VARCHAR" property="goodsImgUrl" />
+    </resultMap>
+    <sql id="Base">
+      id, goodsName, createTime, goodsId, price, goodsImgUrl
+    </sql>
+
+    <select id="selectnewgoods" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select g.id,g.goodsName,g.createTime,s.goodsId,s.price,s.goodsImgUrl
+        from bm_goods g,bm_specification s
+        where g.id=s.goodsId and g.createTime >= '2020-07-13'
+
+    </select>
+
+
+
+</mapper>

@@ -9,6 +9,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 public class Merchant_user9001  {
     public static void main(String[] args) {
-        SpringApplication.run(Merchant_user9001 .class,args);
+        SpringApplication.run(Merchant_user9001.class,args);
     }
 }

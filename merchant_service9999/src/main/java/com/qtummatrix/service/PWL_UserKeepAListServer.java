@@ -27,4 +27,7 @@ public interface PWL_UserKeepAListServer {
     //  获取订单详情
     @RequestMapping("api/keepAList/getOrderDetail")
     public Map getOrderDetail(@RequestParam("orderId") String orderId);
+    //    取消订单
+    @RequestMapping("api/keepAList/cancelMyInOrder")
+    public Map cancelMyInOrder(@RequestParam("orderId") String orderId);
 }

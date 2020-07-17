@@ -22,8 +22,10 @@ public class PWL_OrderDetails {
     private  String payType;
 //  订单时间
     private  String createTime;
-//  订单状态
+//  订单步骤
     private  String orderStep;
+//  订单状态
+    private  String orderState;
 //  收货人姓名
     private  String contacter;
 //  收货人电话
@@ -86,6 +88,14 @@ public class PWL_OrderDetails {
         this.orderStep = orderStep;
     }
 
+    public String getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(String orderState) {
+        this.orderState = orderState;
+    }
+
     public String getContacter() {
         return contacter;
     }
@@ -143,6 +153,7 @@ public class PWL_OrderDetails {
                 ", payType='" + payType + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", orderStep='" + orderStep + '\'' +
+                ", orderState='" + orderState + '\'' +
                 ", contacter='" + contacter + '\'' +
                 ", tel='" + tel + '\'' +
                 ", address='" + address + '\'' +
